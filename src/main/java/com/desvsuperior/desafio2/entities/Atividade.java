@@ -1,6 +1,5 @@
 package com.desvsuperior.desafio2.entities;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -23,13 +22,13 @@ public class Atividade {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	private String descriçao;
+	private String descricao;
 	private Double preco;
 	@ManyToOne
 	@JoinColumn(name = "id_categoria")
 	private Categoria categoria;
 	@OneToMany(mappedBy = "atividade")
-	private List<Bloco> blocos = new ArrayList<>();
+	private Set<Bloco> blocos = new HashSet<>();
 	@ManyToMany
 	@JoinTable(name = "tb_participante_atividade",
 			joinColumns = @JoinColumn(name = "id_atividade"),
@@ -42,7 +41,7 @@ public class Atividade {
 	public Atividade(Integer id, String nome, String descriçao, Double preco) {		
 		this.id = id;
 		this.nome = nome;
-		this.descriçao = descriçao;
+		this.descricao = descriçao;
 		this.preco = preco;
 	}
 
@@ -62,12 +61,12 @@ public class Atividade {
 		this.nome = nome;
 	}
 
-	public String getDescriçao() {
-		return descriçao;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setDescriçao(String descriçao) {
-		this.descriçao = descriçao;
+	public void setDescriçao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	public Double getPreco() {
@@ -87,7 +86,7 @@ public class Atividade {
 	}
 
 	
-	public List<Bloco> getBlocos() {
+	public Set<Bloco> getBlocos() {
 		return blocos;
 	}
 
